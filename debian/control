@@ -1,15 +1,62 @@
-Source: template-repository
-Section: unknown
+Source: gnome-themes-extra
+Section: gnome
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Uploaders: Dmitry Shachnev <mitya57@debian.org>, Emilio Pozuelo Monfort <pochu@debian.org>, Laurent Bigonville <bigon@debian.org>, Michael Biebl <biebl@debian.org>
+Build-Depends: debhelper-compat (= 13),
+               dh-sequence-gnome,
+               intltool,
+               libgtk-3-dev,
+               libgtk2.0-dev,
+               gtk-update-icon-cache,
+               libcairo2-dev,
+               libgdk-pixbuf-2.0-dev,
+               libglib2.0-dev,
+               librsvg2-dev
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-themes-extra
+Vcs-Git: https://salsa.debian.org/gnome-team/gnome-themes-extra.git
 
-Package: template-repository
+Package: gnome-themes-extra
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: gnome-themes-extra-data (>= ${source:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends},
+         gtk2-engines-pixbuf
+Recommends: gnome-accessibility-themes,
+            adwaita-icon-theme
+Description: Adwaita GTK 2 theme — engine
+ This is the version of Adwaita, the standard GNOME theme, for the
+ GTK 2.x toolkit.
+ .
+ The GTK 3.x version is already included in libgtk-3-0.
+ .
+ This package contains the Adwaita theme engine.
+
+Package: gnome-themes-extra-data
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: Adwaita GTK 2 theme and Adwaita-dark GTK 3 theme — common files
+ This package contains the common architecture-independent files for
+ Adwaita, the standard GNOME theme, for the GTK 2 toolkit. The GTK 3
+ equivalent is already included in libgtk-3-0.
+ .
+ This package also makes the dark variant of Adwaita available for GTK
+ 3 as a separate Adwaita-dark theme. In newer versions of GTK 3, this
+ has been superseded by the ability for a single theme to provide both
+ light and dark variants, which can be selected in the Appearance panel
+ of GNOME's Settings application (gnome-control-center).
+
+Package: gnome-accessibility-themes
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: High Contrast GTK 2 theme and icons
+ This is the version of GNOME's standard HighContrast theme, for the
+ GTK 2.x toolkit. An icon theme is also included.
+ .
+ The GTK 3.x version is already included in libgtk-3-0.
